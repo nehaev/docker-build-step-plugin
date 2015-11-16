@@ -62,8 +62,8 @@ public class RemoveCommand extends DockerCommand {
         for (String id : ids) {
             id = id.trim();
             try {
-                client.killContainerCmd(id).exec();
-                client.removeContainerCmd(id).withRemoveVolumes(removeVolumes).exec();
+                //client.killContainerCmd(id).exec();
+                client.removeContainerCmd(id).withRemoveVolumes(removeVolumes).withForce(true).exec();
                 console.logInfo("removed container id " + id);
             } catch (NotFoundException e) {
                 if (!ignoreIfNotFound) {

@@ -33,8 +33,8 @@ public class RemoveAllCommand extends DockerCommand {
         DockerClient client = getClient(build, null);
         List<Container> containers = client.listContainersCmd().withShowAll(true).exec();
         for (Container container : containers) {
-            client.killContainerCmd(container.getId()).exec();
-            client.removeContainerCmd((container.getId())).withRemoveVolumes(removeVolumes).exec();
+            //client.killContainerCmd(container.getId()).exec();
+            client.removeContainerCmd((container.getId())).withRemoveVolumes(removeVolumes).withForce(true).exec();
             console.logInfo("removed container id " + container.getId());
         }
     }
